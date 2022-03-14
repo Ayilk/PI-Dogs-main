@@ -30,6 +30,7 @@ const getAllDogos = ( req, res, next )=>{
               height: el.height.metric,
               weight: el.weight.metric,
               life_span: el.life_span,
+              temperament: el.temperament,
               image: el.image.url
           }
       }))
@@ -49,9 +50,29 @@ const getAllDogos = ( req, res, next )=>{
    
  }
 
+ const addDog = async ( req, res, next ) => {
+    const { name, height, weight, life_span, image, createdInDb, temperament} = req.body;
+
+    const dogCreated = await Dog.create({
+         name, height, weight, life_span, image, createdInDb, id: uuidv4()
+    })
+
+    const temperamentDb = await Temperament.findAll({
+        where: {
+            name: temperament
+        }
+    })
+    dogCreated.addTemperament(temperamentDb)
+    res.send("Puppy successfully created")
+}
+
+
+
+
  
 
 module.exports = {
     
-   getAllDogos
+   getAllDogos,
+   addDog
 }

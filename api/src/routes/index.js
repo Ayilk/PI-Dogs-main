@@ -1,9 +1,9 @@
-const { dogController } = require('../controllers/Dogs');
 const { Router } = require('express');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
 const DogsRoutes = require('./Dog');
+const TemperamentsRoutes = require('./Temperament')
 //const TemperamentsRoutes = require('./Temperament');
 
 const router = Router();
@@ -13,7 +13,8 @@ const router = Router();
 
 
 router.use('/dogs', DogsRoutes);
-//router.use('/temperaments', TemperamentsRoutes);
+router.use('/temperaments', TemperamentsRoutes)
+
 
 router.get('/', (req, res, next) => {
     res.send("Rutas conectadas correctamente en el index")
