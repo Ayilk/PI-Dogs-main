@@ -17,4 +17,5 @@ const getTemmperaments = async ( req, res, next ) => {
     const allTemperaments = await Temperament.findAll();
         res.send(allTemperaments);
 }
+
   module.exports = {getTemmperaments};
