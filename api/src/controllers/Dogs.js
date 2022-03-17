@@ -1,6 +1,8 @@
 const axios = require('axios');
 const { v4: uuidv4 } = require('uuid');
 const { Dog, Temperament } = require('../db');
+require('dotenv').config();
+const{ API_KEY } = process.env 
 
 
 const getAllDogos = ( req, res, next )=>{
@@ -17,7 +19,7 @@ const getAllDogos = ( req, res, next )=>{
              }
          }
     })
-    const apiDogs = axios.get("https://api.thedogapi.com/v1/breeds");
+    const apiDogs = axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`);
  
     Promise.all([ dbDogs, apiDogs ])
     .then(info => {
