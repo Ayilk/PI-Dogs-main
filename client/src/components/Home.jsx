@@ -109,7 +109,7 @@ export default function Home(){
                               <div >
                                   <Link to={'/home/' + el.id}>
                                       <Card name={el.name}
-                                            image={el.image}
+                                            image={el.image ? el.image: <img src="https://imgs.search.brave.com/dG3edZP1SHHP38gnCGwhRXptYBBaAL56FtRyiXYTCkQ/rs:fit:1080:1080:1/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzNhL2Vh/LzdlLzNhZWE3ZWU3/NzdhYmNjM2QxNWZl/Yjg0MDZmMDBjMzRj/LmpwZw"/>}
                                             weight={el.weight}
                                             temperament={el.temperament}
                                             key={el.id} />

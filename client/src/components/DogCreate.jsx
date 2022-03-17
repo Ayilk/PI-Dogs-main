@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { filterDogsByTemperament, getTemperaments, postDog } from "../actions";
+import {  getTemperaments, postDog } from "../actions";
 import { useDispatch, useSelector } from "react-redux";
 import "../css/DogCreate.css"
 
@@ -12,6 +12,7 @@ function validate(input){
     else if(!input.min_weight){ errors.min_weight = "Se requiere una gordura mínima"}
     else if(!input.max_weight){ errors.max_weight = "Se requiere una gordura máxima"}
     else if(parseInt(input.min_height) >= parseInt(input.max_height)){errors.max_height = "La altura máxima debe ser mayor que la altura mínima"}
+    return errors;
 }
 
 
@@ -36,16 +37,16 @@ export function DogCreate(){
 
     
     function handleChange(e){
-        //e.preventDefault();
+        e.preventDefault();
         setInput({
             ...input,
             [ e.target.name ] : e.target.value
         })
-        // setErrors(validate({
-        //     ...input,
-        //     [ e.target.value ] : e.target.value
-        // }))   
-        // console.log(input)
+        setErrors(validate({
+            ...input,
+            [ e.target.name ] : e.target.value
+        }))   
+        console.log(input)
     }
 
     function handleSelect(e){
@@ -57,12 +58,13 @@ export function DogCreate(){
 
     function handleSubmit(e){
        
-        if(errors.name !== undefined || 
-           errors.min_height !== undefined ||
-           errors.max_height !== undefined ||
-           errors.min_weight !== undefined ||
-           errors.max_weight !== undefined ||
-           errors.life_span !== undefined ){
+        if(!errors.name &
+            !errors.min_height &
+            !errors.max_height &
+            ! errors.min_weight & 
+            !errors.max_weight &
+            !errors.life_span &
+            !errors.image){
             document.getElementById("Alto");
             return alert("Completa los campos obligatorios")
            }
