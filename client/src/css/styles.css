@@ -1,0 +1,53 @@
+paging li a {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 18px;
+    display: block;
+    cursor: pointer;
+    background: white;
+    color: #000;
+    text-align: center;
+  }
+  
+  .paging button {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 18px;
+    display: block;
+    background: white;
+    color: #000;
+    text-align: center;
+  }
+  
+  .paging button:disabled {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 18px;
+    display: block;
+    background: rgba(54, 40, 40, 0.288);
+    color: #000;
+    text-align: center;
+  }
+  
+  .paging li a:hover,
+  li.paging_current a {
+    background:rgb(116, 86, 86);
+    color: white !important;
+  }
+  
+  .paging li {
+    margin: 0 2.5px;
+  }
+  
+  ul,
+  ul li {
+    list-style: none;
+  }
+  
+  a,
+  a:hover {
+    text-decoration: none;
+  }

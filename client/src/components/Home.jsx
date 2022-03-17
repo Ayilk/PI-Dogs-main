@@ -1,11 +1,12 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import  { filterCreated, filterDogsByTemperament, getDogs, orderByName, orderByWeight }  from '../actions/index';
+import  { filterCreated, filterDogsByTemperament, getDogs, orderByName, orderByWeight, getTemperaments }  from '../actions/index';
 import { Link } from 'react-router-dom';
 import Card from './Cards';
 import Paginado from './Paginado';
 import SearchBar from './SearchBar';
+import "../css/Home.css"
 
 export default function Home(){
     const dispatch = useDispatch();
@@ -26,6 +27,7 @@ export default function Home(){
  
     useEffect(() => {
         dispatch(getDogs())
+        dispatch( getTemperaments())
     },[dispatch]);
 
     function handleClick(e){
@@ -36,6 +38,7 @@ export default function Home(){
     function handleFilterTemperament(e){
         e.preventDefault();
         dispatch(filterDogsByTemperament(e.target.value))
+        setCurrentPage(1);
     }
 
     function handleFilterCreated(e){
@@ -57,49 +60,53 @@ export default function Home(){
     }
 
     return(
-        <div>
-            <Link to = '/dog'> 
-               <button>Crear nueva raza perruna</button>
-            </Link>
-            <h1>Dogos</h1>
-            <button onClick={e => { handleClick(e) }} >
-                Volver a cargar todos los Dogos
-            </button>
+        <div className="container">
+            
 
-            <div>
-                <select onChange={e => handleSort(e) }>
+            <div className="cinta">
+                <div className="botoness">
+                <Link to = '/dog'> 
+                    <button className="botones">Crear nueva raza perruna</button>
+                </Link>
+                </div>
+                <button className="botones" onClick={e => { handleClick(e) }} >
+                    Volver a cargar todos los Dogos
+                </button>
+
+                <select className="botones" onChange={e => handleSort(e) }>
                     <option value= 'asc'>Ascendente</option>
                     <option value= 'desc'>Descendente</option>
                 </select>
-                <select onChange={e => handleSortW(e)}>
+                <select className="botones" onChange={e => handleSortW(e)}>
                     <option value= 'mayor'>Gordos</option>
                     <option value= 'menor'>Flacos</option>
                 </select>    
-                <select onChange={ e => handleFilterCreated(e) } >
+                <select className="botones" onChange={ e => handleFilterCreated(e) } >
                     <option value='All'> Todos los cochis</option>
                     <option value='created'>Cochis creados</option>
                     <option value='api'>Existente</option>
                 </select>  
-                <select onChange={(e) => handleFilterTemperament(e)}>
+                <select className="botones" onChange={(e) => handleFilterTemperament(e)}>
                     <option value="temperamento"> Temperamentos </option>
                     <option value="all"> Todos </option>               
                         {allTemp.map((t) => (
                         <option key={t.id} value={t.name}> {t.name} </option>))}
                 </select>  
                
+                <SearchBar />
 
-                <Paginado
-                  dogsPerPage={dogsPerPage}
-                  allDogs={allDogs.length}
-                  paginado={paginado}
-                />  
+                
 
-                <SearchBar/>
+                
 
-                  {
+                  
+            </div>
+            
+            <div className="containerCard" >  
+            {
                       currentDogs ?.map((el) => {
                           return(
-                              <div>
+                              <div >
                                   <Link to={'/home/' + el.id}>
                                       <Card name={el.name}
                                             image={el.image}
@@ -110,8 +117,14 @@ export default function Home(){
                               </div>
                           )
                       })
-                  }      
-            </div>
+            }
+            </div>   
+            <Paginado
+                  dogsPerPage={dogsPerPage}
+                  allDogs={allDogs.length}
+                  paginado={paginado}
+                  currentPage={currentPage}
+                />       
         </div>
     )
 } 

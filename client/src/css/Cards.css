@@ -1,0 +1,16 @@
+.card {
+    background-color:#F1BDD7;
+    width: 300px;
+    color: black;
+    border-radius: 25px;
+    list-style: none;
+    font-size: 1rem;
+    text-align: center;
+    }
+
+.card:hover {
+    opacity: 0.8;
+}    
+.imagenCard {
+    border-radius: 25px;
+}    

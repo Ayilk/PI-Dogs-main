@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { filterDogsByTemperament, getTemperaments, postDog } from "../actions";
 import { useDispatch, useSelector } from "react-redux";
+import "../css/DogCreate.css"
 
 function validate(input){
     let errors={};
@@ -35,16 +36,16 @@ export function DogCreate(){
 
     
     function handleChange(e){
-        e.preventDefault();
+        //e.preventDefault();
         setInput({
             ...input,
-            [ e.target.value ] : e.target.value
+            [ e.target.name ] : e.target.value
         })
-        setErrors(validate({
-            ...input,
-            [ e.target.value ] : e.target.value
-        }))   
-        console.log(input)
+        // setErrors(validate({
+        //     ...input,
+        //     [ e.target.value ] : e.target.value
+        // }))   
+        // console.log(input)
     }
 
     function handleSelect(e){
@@ -65,6 +66,7 @@ export function DogCreate(){
             document.getElementById("Alto");
             return alert("Completa los campos obligatorios")
            }
+           
         const addDog = {
             name: input.name,
             life_span: input.life_span,
@@ -103,12 +105,13 @@ export function DogCreate(){
     
 
     return(
-        <div>
+        <div className="containerTotal">
             <Link to='/home'><button> Volver </button></Link>
             <h1> Crea una nueva raza Cochi !! </h1>
-            <form  id="Alto" onSubmit={e => handleSubmit(e)}>
+
+            <form  className="formContainer" id="Alto" onSubmit={e => handleSubmit(e)}>
                 <div>
-                    <label> Nombre: </label>
+                    <label className="t"> Nombre: </label>
                     <input
                        type="text"
                        placeholder="Ingresa el nombre de la raza"
@@ -120,7 +123,7 @@ export function DogCreate(){
                     {errors.name && (<p> { errors.name } </p>)}
                 </div>
                 <div>
-                    <label> Altura: </label>
+                    <label className="t"> Altura: </label>
                     <input
                        type="text"
                        value={input.min_height}
@@ -140,7 +143,7 @@ export function DogCreate(){
                 </div>
                 
                 <div>
-                    <label> Gordura:  </label>
+                    <label className="t"> Gordura:  </label>
                     <input
                        type="text"
                        value={input.min_weight}
@@ -160,7 +163,7 @@ export function DogCreate(){
                 </div>
                 
                 <div>
-                    <label> Esperanza de vida: </label>
+                    <label className="t"> Esperanza de vida: </label>
                     <input
                        type="text"
                        value={input.life_span}
@@ -171,7 +174,7 @@ export function DogCreate(){
                     {errors.life_span && (<p> { errors.life_span} </p>)}
                 </div>
                 <div>
-                    <label> Imagen: </label>
+                    <label className="t"> Imagen: </label>
                     <input
                        type="text"
                        value={input.image}
@@ -182,8 +185,8 @@ export function DogCreate(){
                     {errors.image && (<p> { errors.image} </p>)}
                 </div>
                 <div>
-                    <label> Temperamentos: </label>
-                    <select name="tempe" onChange={e => handleSelect(e)} type="text">
+                    <label className="t"> Temperamentos: </label>
+                    <select name="tempe" onChange={e => handleSelect(e)}  type="text" size="5" >
                         <option value={null}></option>
                         {
                             temperaments.map((temp, id) => {

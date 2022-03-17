@@ -1,0 +1,43 @@
+.container {
+    padding: 0%;
+}
+.cinta {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+    gap: 0px;
+    padding: 40px;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem; 
+  
+     
+}
+
+.botones {
+    height: 100%;
+    border: none;
+    font-size: 1.1rem; 
+    background-color: #F0DDE7;
+}
+.botones:hover {
+    opacity: 0.8;
+}
+.botoness:hover {
+    opacity: 0.8;
+}
+.botoness {
+    height: 100%;
+    
+    background-color: #F0DDE7;
+}
+
+
+
+.containerCard {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 230px );
+    gap: 90px;
+    padding: 40px;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,13 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import "../css/LandingPage.css";
+import imagen from "../css/portada2.png";
 
 export default function LandingPage(){
     return(
-        <div>
-            <h1> Bienvenidos a mi página</h1>
-            <Link to = '/home'>
-                <button> Ingresar </button>
-            </Link>
+        <div className="contain">
+            <div>
+                <h1> Proyecto Individual " DOGS "</h1>
+                <h2> Sandra Rangel </h2>
+                <h3> Corrector: Brayan Camilo Pineda</h3>
+                
+            </div>
+            <div >
+                    <Link to = '/home'>
+                        <button className='boton'> 
+                            <div >
+                                 <img className="image"   src={imagen} alt=''/>
+                            </div>
+                        </button>
+                    </Link>
+                </div>
         </div>
+        
     )
 }

@@ -1,0 +1,39 @@
+.contain {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 40px;
+    justify-content: center;
+    align-items: center;
+    
+    
+}
+
+.image {
+    border-radius: 90px;
+    width: 600px;
+    height: 600px;
+}
+
+.boton {
+    
+        background-color: #fff; 
+        border: none;
+        color: black;
+        padding: 10px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 900px;
+        box-shadow: 0 0 10px #fff, 0 0 20px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+    
+}
+
+.boton:hover {
+    opacity: 0.8;
+}
+
+.cajaBoton {
+    padding: 30% 0;
+}

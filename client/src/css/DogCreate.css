@@ -1,0 +1,26 @@
+.formContainer {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #311601;
+    font-weight: bolder;
+}
+
+.t {
+    background-color: #EC3DA9;
+    border-radius: 5px;
+    width: 200px;
+    justify-content: left;
+}
+
+.containerTotal {
+    position: absolute;
+    margin-left: 500px;
+    margin-top: 70px;
+    width: 500px;
+    height: 500px;
+    outline: none;
+    border-radius: 10px;
+    background-color: #E5C3D8;
+    backdrop-filter: 1px;
+    box-shadow: 0 0 10px #fff, 0 0 20px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073; 
+}
