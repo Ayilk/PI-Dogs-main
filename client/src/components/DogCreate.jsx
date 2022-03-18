@@ -58,16 +58,16 @@ export function DogCreate(){
 
     function handleSubmit(e){
        
-        if(!errors.name &
-            !errors.min_height &
-            !errors.max_height &
-            ! errors.min_weight & 
-            !errors.max_weight &
-            !errors.life_span &
-            !errors.image){
-            document.getElementById("Alto");
-            return alert("Completa los campos obligatorios")
-           }
+        if (errors.name !== undefined || 
+            errors.min_height !== undefined ||
+            errors.max_height !== undefined ||
+            errors.min_weight !== undefined ||
+            errors.max_weight !== undefined ||
+            errors.life_span !== undefined 
+            )  {
+            document.getElementById("Alto"); 
+            return alert("Llena los campos obligatorios");
+          }
            
         const addDog = {
             name: input.name,
@@ -107,14 +107,17 @@ export function DogCreate(){
     
 
     return(
-        <div className="containerTotal">
+        <div >
             <Link to='/home'><button> Volver </button></Link>
             <h1> Crea una nueva raza Cochi !! </h1>
 
             <form  className="formContainer" id="Alto" onSubmit={e => handleSubmit(e)}>
-                <div>
-                    <label className="t"> Nombre: </label>
+                <div className="t">
+                    <div className="nameDC">
+                    <label > Nombre: </label>
+                    </div>
                     <input
+                       className="inputDC"
                        type="text"
                        placeholder="Ingresa el nombre de la raza"
                        name="name"
@@ -124,9 +127,10 @@ export function DogCreate(){
                     />
                     {errors.name && (<p> { errors.name } </p>)}
                 </div>
-                <div>
-                    <label className="t"> Altura: </label>
+                <div className="t">
+                    <label> Altura: </label>
                     <input
+                       className="inputDC"
                        type="text"
                        value={input.min_height}
                        placeholder="Ingresa la altura mínima"
@@ -135,6 +139,7 @@ export function DogCreate(){
                     />
                     {errors.min_height && (<p> { errors.min_height } </p>)}
                     <input
+                       className="inputDC"
                        type="text"
                        value={input.max_height}
                        placeholder="Ingresa la altura máxima"
@@ -144,29 +149,32 @@ export function DogCreate(){
                     {errors.max_height && (<p> { errors.max_height } </p>)}
                 </div>
                 
-                <div>
-                    <label className="t"> Gordura:  </label>
+                <div className="t">
+                    <label > Gordura:  </label>
                     <input
+                       className="inputDC"
                        type="text"
                        value={input.min_weight}
-                       placeholder="Ingresa la gordura máxima"
+                       placeholder="Ingresa la gordura mínima"
                        name="min_weight"
                        onChange={e => handleChange(e)}
                     />
                     {errors.min_weight && (<p> { errors.min_weight } </p>)}
                     <input
+                       className="inputDC"
                        type="text"
                        value={input.max_weight}
-                       placeholder="Ingresa la gordura mínima"
+                       placeholder="Ingresa la gordura máxima"
                        name="max_weight"
                        onChange={e => handleChange(e)}
                     />
                     {errors.max_weight && (<p> { errors.max_weight} </p>)}
                 </div>
                 
-                <div>
-                    <label className="t"> Esperanza de vida: </label>
+                <div className="t">
+                    <label > Esperanza de vida: </label>
                     <input
+                       className="inputDC"
                        type="text"
                        value={input.life_span}
                        placeholder="Ingresa la esperanza de vida"
@@ -178,6 +186,7 @@ export function DogCreate(){
                 <div>
                     <label className="t"> Imagen: </label>
                     <input
+                       className="inputDC"
                        type="text"
                        value={input.image}
                        placeholder="Ingresa la url de la imagen"
@@ -186,8 +195,8 @@ export function DogCreate(){
                     />
                     {errors.image && (<p> { errors.image} </p>)}
                 </div>
-                <div>
-                    <label className="t"> Temperamentos: </label>
+                <div className="t">
+                    <label > Temperamentos: </label>
                     <select name="tempe" onChange={e => handleSelect(e)}  type="text" size="5" >
                         <option value={null}></option>
                         {
@@ -198,6 +207,7 @@ export function DogCreate(){
                             })
                         }
                     </select>
+                    <div className="t">
                     {
                         temps.map((temp, id) => {
                             return(
@@ -209,9 +219,10 @@ export function DogCreate(){
                             )
                         })
                     }
+                    </div>
                 </div>
 
-                <button type="submit"> Crear nueva raza perruna </button>
+                <button className="buttonCD" type="submit"> Crear nueva raza perruna </button>
                
             </form>
         </div>

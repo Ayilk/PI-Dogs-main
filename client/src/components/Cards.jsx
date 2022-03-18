@@ -6,7 +6,7 @@ export default function Card({ image, name, temperament, weight }){
          <div className="card">
              <img 
              className="imagenCard"
-             src = {image} 
+             src = { image } 
              alt = "image not found"
              width= "300px"
              height= "299px" />

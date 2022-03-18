@@ -42,7 +42,7 @@ const getAllDogos = ( req, res, next )=>{
           dogId.length ? res.status(200).send(dogId) : res.status(400).send("Dog not found")
       } 
       if(name){
-          let dogName = infoTotal.filter(el => el.name.includes(name))
+          let dogName = infoTotal.filter(el => el.name.toLowerCase().includes(name.toLowerCase()))
           dogName.length ? res.send(dogName) : res.status(400).send("That name is not, sorry ")
       }
       res.send(infoTotal)
