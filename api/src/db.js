@@ -35,7 +35,7 @@ const { Dog, Temperament } = sequelize.models;
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 
-Dog.belongsToMany(Temperament, {through: 'Dog-Temperament'})
+Dog.belongsToMany(Temperament, {through: 'Dog-Temperament' })
 Temperament.belongsToMany(Dog, {through: 'Dog-Temperament'})
 
 module.exports = {

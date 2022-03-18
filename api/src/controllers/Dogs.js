@@ -13,6 +13,7 @@ const getAllDogos = ( req, res, next )=>{
     const dbDogs = Dog.findAll({
          include: {
              model: Temperament,
+             
              attributes: ['name'],
              through: {
                  attributes: []

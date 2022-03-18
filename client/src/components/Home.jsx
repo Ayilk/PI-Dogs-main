@@ -111,7 +111,9 @@ export default function Home(){
                                       <Card name={el.name}
                                             image={el.image ? el.image: <img src="https://imgs.search.brave.com/dG3edZP1SHHP38gnCGwhRXptYBBaAL56FtRyiXYTCkQ/rs:fit:1080:1080:1/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzNhL2Vh/LzdlLzNhZWE3ZWU3/NzdhYmNjM2QxNWZl/Yjg0MDZmMDBjMzRj/LmpwZw"/>}
                                             weight={el.weight}
-                                            temperament={el.temperament}
+                                            temperament={ el.temperament  ? el.temperament :                                               
+                                                       el.temperaments && el.temperaments.map((temp) => temp.name.concat(" "))
+                                            }
                                             key={el.id} />
                                   </Link>
                               </div>

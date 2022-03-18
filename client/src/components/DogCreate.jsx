@@ -11,7 +11,7 @@ function validate(input){
     else if(!input.max_height){ errors.max_height = "Se requiere una altura máxima"}
     else if(!input.min_weight){ errors.min_weight = "Se requiere una gordura mínima"}
     else if(!input.max_weight){ errors.max_weight = "Se requiere una gordura máxima"}
-    else if(parseInt(input.min_height) >= parseInt(input.max_height)){errors.max_height = "La altura máxima debe ser mayor que la altura mínima"}
+    //else if(parseInt(input.min_height) >= parseInt(input.max_height)){errors.max_height = "La altura máxima debe ser mayor que la altura mínima"}
     return errors;
 }
 
@@ -20,7 +20,7 @@ export function DogCreate(){
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const temperaments = useSelector((state) => state.temperaments);
-    const [ errors, setErrors ] = useState({});
+    const [ errors, setErrors ] = useState({name: "No hay nombre"});
     const [ temps, setTemps ] = useState([])
     const [ input, setInput ] = useState({
         name: "",        
@@ -55,20 +55,11 @@ export function DogCreate(){
             else { setTemps([e.target.value]) }
         }console.log(e.target.value)
     }
-
+    
+    
     function handleSubmit(e){
-       
-        if (errors.name !== undefined || 
-            errors.min_height !== undefined ||
-            errors.max_height !== undefined ||
-            errors.min_weight !== undefined ||
-            errors.max_weight !== undefined ||
-            errors.life_span !== undefined 
-            )  {
-            document.getElementById("Alto"); 
-            return alert("Llena los campos obligatorios");
-          }
-           
+        e.preventDefault();
+
         const addDog = {
             name: input.name,
             life_span: input.life_span,
@@ -76,25 +67,31 @@ export function DogCreate(){
             weight: input.min_weight + " - " + input.max_weight,
             image: input.image,
             temperament: temps
+        }    
+        if (!errors    
+
+            
+        ){            
+            dispatch(postDog(addDog));
+            alert("Nueva raza perruna creada");
+
+            setInput({
+                name: "",        
+                min_height: "",
+                max_height: "",
+                min_weight: "",
+                max_weight: "",
+                life_span: "",
+                image: "",
+                temperament: []
+            })
+            setTemps([])
+            navigate('/home')
+            
         }
+        else{ return alert("Llena los campos obligatorios");}
+           
         
-        e.preventDefault();
-        console.log(input);  
-        console.log(addDog); 
-        dispatch(postDog(addDog));
-        alert("Nueva raza perruna creada");
-        setInput({
-            name: "",        
-            min_height: "",
-            max_height: "",
-            min_weight: "",
-            max_weight: "",
-            life_span: "",
-            image: "",
-            temperament: []
-        })
-        setTemps([])
-        navigate('/home')
     }
 
     function handleDelete(e){
@@ -111,7 +108,7 @@ export function DogCreate(){
             <Link to='/home'><button> Volver </button></Link>
             <h1> Crea una nueva raza Cochi !! </h1>
 
-            <form  className="formContainer" id="Alto" onSubmit={e => handleSubmit(e)}>
+            <form  className="formContainer"  onSubmit={e => handleSubmit(e)}>
                 <div className="t">
                     <div className="nameDC">
                     <label > Nombre: </label>
